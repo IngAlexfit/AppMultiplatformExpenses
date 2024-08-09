@@ -1,14 +1,66 @@
-This is a Kotlin Multiplatform project targeting Android, iOS.
+# Expense Manager App
 
-* `/composeApp` is for code that will be shared across your Compose Multiplatform applications.
-  It contains several subfolders:
-  - `commonMain` is for code that’s common for all targets.
-  - Other folders are for Kotlin code that will be compiled for only the platform indicated in the folder name.
-    For example, if you want to use Apple’s CoreCrypto for the iOS part of your Kotlin app,
-    `iosMain` would be the right folder for such calls.
+## Descripción
+**Expense Manager** es una aplicación multiplataforma desarrollada en **Kotlin** que permite a los usuarios gestionar sus gastos de manera eficiente. La aplicación ofrece funcionalidades para agregar, editar y visualizar gastos, categorizándolos para un mejor seguimiento.
 
-* `/iosApp` contains iOS applications. Even if you’re sharing your UI with Compose Multiplatform, 
-  you need this entry point for your iOS app. This is also where you should add SwiftUI code for your project.
+## Características
+- **Agregar Gastos**: Permite a los usuarios agregar nuevos gastos con detalles como monto, descripción y categoría.
+- **Editar Gastos**: Los usuarios pueden editar los gastos existentes.
+- **Categorías de Gastos**: Los gastos se pueden categorizar para una mejor organización.
+- **Interfaz de Usuario Intuitiva**: Utiliza **Jetpack Compose** para una interfaz de usuario moderna y responsiva.
+- **Navegación Fluida**: Implementa `moe.tlaster.precompose` para una navegación fluida entre pantallas.
 
+## Tecnologías Utilizadas
+- **Kotlin**: Lenguaje principal de programación.
+- **Jetpack Compose**: Para la construcción de la interfaz de usuario.
+- **PreCompose**: Para la navegación.
+- **Gradle**: Sistema de construcción.
 
-Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html)…
+## Estructura del Proyecto
+```plaintext
+composeApp/
+├── src/
+│   ├── commonMain/
+│   │   └── kotlin/
+│   │       └── org/
+│   │           └── example/
+│   │               └── project/
+│   │                   ├── App.kt
+│   │                   ├── navigation/
+│   │                   │   └── Navigator.kt
+│   │                   └── ui/
+│   │                       └── ExpensesDetailScreen.kt
+└── ...
+├── build.gradle.kts
+└── settings.gradle.kts
+
+```
+## Instalación
+
+### Clonar el repositorio
+```bash
+git clone 
+cd 
+```
+
+## Configurar el Entorno
+
+1. **Asegúrate de tener instalado Android Studio.**
+2. **Abre el proyecto en Android Studio.**
+
+## Construir el Proyecto
+
+1. **Sincroniza el proyecto con Gradle.**
+2. **Ejecuta la aplicación en un emulador o dispositivo físico.**
+
+## Información Adicional
+
+Este es un proyecto de **Kotlin Multiplatform**  **Android** e **iOS**.
+
+### Estructura del Proyecto
+
+- `/composeApp`: Contiene el código que será compartido entre tus aplicaciones Compose Multiplatform. Incluye varias subcarpetas:
+  - `commonMain`: Para código que es común para todos los objetivos.
+  - Otras carpetas son para código Kotlin que se compilará solo para la plataforma indicada en el nombre de la carpeta. Por ejemplo, si deseas usar **CoreCrypto** de Apple para la parte de **iOS** de tu aplicación Kotlin, `iosMain` sería la carpeta adecuada para tales llamadas.
+
+- `/iosApp`: Contiene aplicaciones para **iOS**. Aun si compartes tu UI con Compose Multiplatform, necesitas este punto de entrada para tu aplicación iOS. Aquí es donde también deberías agregar código de **SwiftUI** para tu proyecto.
