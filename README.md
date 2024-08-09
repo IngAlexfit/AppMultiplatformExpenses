@@ -64,3 +64,9 @@ Este es un proyecto de **Kotlin Multiplatform**  **Android** e **iOS**.
   - Otras carpetas son para código Kotlin que se compilará solo para la plataforma indicada en el nombre de la carpeta. Por ejemplo, si deseas usar **CoreCrypto** de Apple para la parte de **iOS** de tu aplicación Kotlin, `iosMain` sería la carpeta adecuada para tales llamadas.
 
 - `/iosApp`: Contiene aplicaciones para **iOS**. Aun si compartes tu UI con Compose Multiplatform, necesitas este punto de entrada para tu aplicación iOS. Aquí es donde también deberías agregar código de **SwiftUI** para tu proyecto.
+
+### Capturas de Pantalla:
+![image](https://github.com/user-attachments/assets/30eb2abe-adea-4b6e-9196-2f6f32a218d3)
+
+![image](https://github.com/user-attachments/assets/9c15260b-4115-47e7-9c75-054e6dd99928)
+
