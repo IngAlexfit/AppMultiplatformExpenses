@@ -19,6 +19,8 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.Button
+import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Divider
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Icon
@@ -52,6 +54,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.launch
+import org.example.project.data.TitleTopBarTypes
 import org.example.project.getColorsTheme
 import org.example.project.model.Expense
 import org.example.project.model.ExpenseCategory
@@ -113,14 +116,42 @@ fun ExpensesDetailScreen(
                 }
             })
             Spacer(modifier = Modifier.height(30.dp))
+            ExpenseDescripcion(
+                descriptionContent = description,
+                onDescriptionChange = {
+                    description = it
+                },
+                keyboardController = keyboardController
+            )
+            Spacer(modifier = Modifier.weight(1f))
+            Button(
+                modifier = Modifier.fillMaxWidth().clip(RoundedCornerShape(45)),
+                onClick = {
+                    val expense = Expense(
+                        amount = price,
+                        category = ExpenseCategory.valueOf(expenseCategory),
+                        description = description
+                    )
+                    val expenseFromEdit = expenseToEdit?.id?.let {expense.copy(id=it) }
+                    addExpenseAndNavigateBack(expenseFromEdit ?: expense)
+                },
+                colors = ButtonDefaults.buttonColors(
+                    backgroundColor = colors.purple,
+                    contentColor = Color.White
+                ),
+                enabled = price != 0.0 && expenseCategory.isNotBlank() && description.isNotBlank()
 
-
+            ){
+              expenseToEdit?.let {
+                  Text(text = TitleTopBarTypes.EDIT.value)
+                  return@Button
+              }
+                Text(text = TitleTopBarTypes.ADD.value)
+            }
         }
     }
 }
 
-
-}
 
 @Composable
 private fun ExpenseAmount(
@@ -241,6 +272,60 @@ private fun ExpenseTypeSelector(
         }
     }
 }
+
+@Composable
+fun ExpenseDescripcion(
+    descriptionContent: String,
+    onDescriptionChange: (String) -> Unit,
+    keyboardController: SoftwareKeyboardController?
+) {
+    var text by remember { mutableStateOf(descriptionContent) }
+    val colors = getColorsTheme()
+    Column(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalAlignment = Alignment.Start,
+        verticalArrangement = Arrangement.Center
+    ) {
+        Text(
+            text = "Description",
+            fontSize = 20.sp,
+            color = Color.Gray,
+            fontWeight = FontWeight.SemiBold
+        )
+        TextField(
+            modifier = Modifier.fillMaxWidth(),
+            onValueChange = { newText ->
+                if (newText.length <= 200) {
+                    text = newText
+                    onDescriptionChange(newText)
+                }
+            },
+            value = text,
+            singleLine = true,
+            colors = TextFieldDefaults.textFieldColors(
+                textColor = colors.textColor,
+                backgroundColor = Color.Transparent,
+                focusedIndicatorColor = Color.Transparent,
+                focusedLabelColor = Color.Transparent,
+                unfocusedIndicatorColor = Color.Transparent,
+                unfocusedLabelColor = Color.Transparent
+            ),
+            textStyle = TextStyle(
+                fontSize = 20.sp,
+                fontWeight = FontWeight.ExtraBold
+            ),
+            keyboardActions = KeyboardActions(
+                onDone = {
+                    keyboardController?.hide()
+                }
+            )
+
+
+        )
+        Divider(color = Color.Black, thickness = 2.dp)
+    }
+}
+
 
 @Composable
 fun CategoryBottomSheetContent(
