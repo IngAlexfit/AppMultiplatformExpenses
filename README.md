@@ -70,3 +70,5 @@ Este es un proyecto de **Kotlin Multiplatform**  **Android** e **iOS**.
 
 ![image](https://github.com/user-attachments/assets/9c15260b-4115-47e7-9c75-054e6dd99928)
 
+![image](https://github.com/user-attachments/assets/ef7d8623-19bb-4133-929b-84f6a42f4202)
+
