@@ -53,6 +53,10 @@ kotlin {
         iosMain.dependencies {
 
         }
+        //test multiplatform
+        commonTest.dependencies {
+            implementation(libs.kotlin.test)
+        }
     }
 }
 
