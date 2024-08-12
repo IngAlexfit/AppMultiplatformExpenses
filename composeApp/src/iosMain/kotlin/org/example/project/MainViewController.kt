@@ -7,7 +7,7 @@ import org.koin.core.context.startKoin
 fun MainViewController() = ComposeUIViewController { App() }
 
 fun initKoin() {
-    // Initialize dependency injection
+    // Initialize dependency injectionx
     startKoin {
 
         modules(appModule())
