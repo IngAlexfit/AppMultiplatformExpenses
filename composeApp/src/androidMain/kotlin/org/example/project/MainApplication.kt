@@ -1,6 +1,8 @@
 package org.example.project
 
 import android.app.Application
+import com.expenseApp.db.AppDatabase
+import org.example.project.data.DatabaseDriverFactory
 import org.example.project.di.appModule
 import org.koin.core.context.startKoin
 import org.koin.android.ext.koin.androidContext
@@ -12,7 +14,7 @@ class MainApplication : Application() {
         // Inicializar Koin
         startKoin {
             androidContext(this@MainApplication)
-            modules(appModule())
+            modules(appModule(AppDatabase.invoke(DatabaseDriverFactory(this@MainApplication).createDriver())))
         }
     }
 }
